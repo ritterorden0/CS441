@@ -4,16 +4,41 @@
 		<link rel="stylesheet" type="text/css" href="cs441project.css">
 		<script src="cs441project.js"></script>
 		<meta charset="utf-8">
+		<!-- clay added 11/4-->
+		<style>
+		.access_aid {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 40px;
+		height: 0;
+		padding-top: 40px;
+		overflow: hidden;
+		border: 1px solid #ccc;
+		background: white 10px 10px / 20px 20px no-repeat;
+	}
+		</style>
 	</head>
 	<body>
-		<form id="addressList">
+	<body id="body"> 
+		<div id="container">
+			<p><a href="#main_nav" id="access_nav" class="access_aid">Skip to navigation</a></p>
+			<form id="addressList">
 			Search for an address:<br>
 			<input type="text" name="address"><br>
 			<input type="button" onclick="resetForm()" value="Clear">
 			<input type="button" onclick="addAddr()" value="Add another address">
 			<input type="button" onclick="submitForm()" value="Submit">
-		</form>		
 		<div id="map"></div>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap"></script> 
+	<nav id="main_nav">
+			<form>
+				<input type="checkbox" name="tollferry" value="freeOnly">Omit Tolls / Ferries<br>
+				<input type="checkbox" name="walkdrive" value="walkordrive">Walking Only<br>
+			</form>
+		<p><a href="#body" id="access_top" class="access_aid">Skip to top</a></p>
+	</nav>
+	
 	</body>
 </html>
