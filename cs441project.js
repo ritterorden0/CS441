@@ -30,9 +30,25 @@ function initMap() {
 }
 
 function resetForm() {
-	document.getElementById("addressList").reset();
+	document.getElementById("addrList").reset();
 }
 
 function submitForm() {
-	document.getElementById("addressList").reset();
+	document.getElementById("addrList").reset();
+}
+
+function addAddr() {
+	var tbl = document.getElementById('addrList');
+	var lastRow = tbl.rows.length;
+	var iter = lastRow;
+	var row = tbl.insertRow(lastRow);
+	var cell = row.insertCell(0);
+	var textNode = document.createTextNode(iter);
+	cell.appendChild(textNode);
+}
+
+function remAddr() {
+	var tbl = document.getElementById('addrList');
+	var lastRow = tbl.rows.length;
+	if (lastRow > 2) tbl.deleteRow(lastRow - 1);
 }
