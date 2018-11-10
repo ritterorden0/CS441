@@ -50,7 +50,7 @@ function addAddr() {
 	var cell1 = row.insertCell(1);
 	var textBox = document.createElement("INPUT");
 	textBox.setAttribute("type", "text");
-	cell1.appendChild(textBox)
+	cell1.appendChild(textBox);
 }
 
 function remAddr() {
