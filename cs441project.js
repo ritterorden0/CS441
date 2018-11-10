@@ -34,7 +34,7 @@ function resetForm() {
 }
 
 function submitForm() {
-	document.getElementById("addrList").reset();
+	document.getElementById("addrList").reset(); // why reset() ...placeholder??
 }
 
 function addAddr() {
@@ -42,9 +42,15 @@ function addAddr() {
 	var lastRow = tbl.rows.length;
 	var iter = lastRow;
 	var row = tbl.insertRow(lastRow);
-	var cell = row.insertCell(0);
-	var textNode = document.createTextNode(iter);
-	cell.appendChild(textNode);
+
+	var cell0 = row.insertCell(0);
+	var textNode0 = document.createTextNode(iter);
+	cell0.appendChild(textNode0);
+
+	var cell1 = row.insertCell(1);
+	var textBox = document.createElement("INPUT");
+	textBox.setAttribute("type", "text");
+	cell1.appendChild(textBox)
 }
 
 function remAddr() {
