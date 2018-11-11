@@ -6,7 +6,7 @@
 		<meta charset="utf-8">
 	</head>
 	<body>
-		<form action="">
+		<div id="main">
 			<table id="addrList">
 				<tr><th colspan = "2">Search for an address:</th></tr>
 				<tr>
@@ -14,11 +14,20 @@
 					<td><input type="text" name="addr1" id="addr1" onkeypress="func(event, this);" /></td>
 				</tr>
 			</table>
-			<input type="button" onclick="resetForm()" value="Reset">
-			<input type="button" onclick="addAddr()" value="Add address">
-			<input type="button" onclick="remAddr()" value="Remove address">
-			<input type="button" onclick="submitForm()" value="Submit">
-		</form>		
+			<form action="">
+				<input type="button" onclick="resetForm()" value="Reset">
+				<input type="button" onclick="addAddr()" value="Add address">
+				<input type="button" onclick="remAddr()" value="Remove address">
+				<input type="button" onclick="submitForm()" value="Submit">
+			</form>
+		</div>
+
+		<div id="settings">
+			<input type="radio" name="transportToggle" value="drive"> Drive<br />
+			<input type="radio" name="transportToggle" value="walk"> Walk<br />
+			<input type="checkbox" name="tolls" value="tolls"> Avoid toll roads<br />
+			Number of people: <input type="text" name="splitQty">
+		</div>		
 		<div id="map"></div>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap"></script>
 	</body>
