@@ -1,15 +1,15 @@
 var map, infoWindow;
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {center: {lat: 56.1304, lng: -106.3468}, zoom: 6});
+	
 	infoWindow = new google.maps.InfoWindow;
+	directionsService = new google.maps.DirectionsService; //should this be global?
+	directionsDisplay = new google.maps.DirectionsRenderer; //should this be gloabal?
+	directionsDisplay.setMap(map); //the directions will be set to be displayed on the map variable
 
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
-			var pos = {
-				lat: position.coords.latitude,
-				lng: position.coords.longitude
-			};
-
+			var pos = {lat: position.coords.latitude, lng: position.coords.longitude};
 			infoWindow.setPosition(pos);
 			infoWindow.setContent('Location found.');
 			infoWindow.open(map);
@@ -34,7 +34,29 @@ function resetForm() {
 }
 
 function submitForm() {
-	document.getElementById("addrList").reset(); // why reset() ...placeholder??
+	//document.getElementById("addrList").reset(); // why reset() ...placeholder??
+	
+	myWayPoints = []; //an array that will contain all waypoint stops, including start and end locations.
+		
+	//two hardcoded addresses for testing
+	myWayPoints.push({location: "San Marcos, Texas", stopover: true});
+	myWayPoints.push({location: "San Marcos, California", stopover: true});
+
+	//calls the google service api's direction service function, calculates the route.  (doesnt do the displaying)
+	directionsService.route({
+	  origin: "California",
+	  destination: 'Utah',
+	  waypoints: myWayPoints,
+	  optimizeWaypoints: true,
+	  travelMode: 'DRIVING'
+	}, function(response, status) {
+	  if (status === 'OK') {
+		directionsDisplay.setDirections(response);
+	  } else {
+		window.alert('Directions request failed due to ' + status);
+	  }
+	});
+
 }
 
 function addAddr() {
