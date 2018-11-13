@@ -11,7 +11,7 @@
 				<tr><th colspan = "2">Search for an address:</th></tr>
 				<tr>
 					<td>1</td>
-					<td><input type="text" name="addr1" id="addr1" onkeypress="func(event, this);" /></td>
+					<td><input type="text" name="userWaypointInputs" id="addr1" onkeypress="func(event, this);" /></td>
 				</tr>
 			</table>
 			<form action="">
@@ -23,9 +23,9 @@
 		</div>
 
 		<div id="settings">
-			<input type="radio" id ="driveSetting" name="transportToggle" value="drive" checked> Drive<br />
-			<input type="radio" id ="walkSetting" name="transportToggle" value="walk"> Walk<br />
-			<input type="checkbox" name="tolls" value="tolls" checked> Avoid toll roads<br />
+			<input type="radio" id ="driveSetting" name="transportToggle" value="DRIVING" checked> Drive<br />
+			<input type="radio" id ="walkSetting" name="transportToggle" value="WALKING"> Walk<br />
+			<input type="checkbox" id ="tollSetting" name="tolls" value="tolls" checked> Avoid toll roads<br />
 			Number of people: <input type="text" name="splitQty" value = "3">
 		</div>		
 		<div id="map"></div>

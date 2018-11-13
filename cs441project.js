@@ -33,22 +33,51 @@ function resetForm() {
 	document.getElementById("addrList").reset();
 }
 
+//returns the value of the radio button if its either walk or drive,  ***note this is implemented in a not so-scalable way
+function getTravelModeRadioButton() {
+	
+	var val = "";
+	if(document.getElementById("driveSetting").checked)
+		val = document.getElementById("driveSetting").value; //nodeValue or value ???
+	else val = document.getElementById("walkSetting").value; //nodeValue or value ???
+	return val;
+}
+
+
+
 function submitForm() {
 	//document.getElementById("addrList").reset(); // why reset() ...placeholder??
 	
-	myWayPoints = []; //an array that will contain all waypoint stops, including start and end locations.
-		
+	//myWayPoints = []; //an array that will contain all waypoint stops, including start and end locations.	
 	//two hardcoded addresses for testing
-	myWayPoints.push({location: "San Marcos, Texas", stopover: true});
-	myWayPoints.push({location: "San Marcos, California", stopover: true});
+	//myWayPoints.push({location: "San Marcos, Texas", stopover: true});
+	//myWayPoints.push({location: "San Marcos, California", stopover: true});
+
+	var userInputAddressses = []; //this is an array that will hold the textboxes (not just the values of the textboxes)
+	userInputAddressses = document.getElementsByName("userWaypointInputs"); //the array is now holding all textboxes with the attribute name "userWaypointInputs"
+	var numOfWaypoints = userInputAddressses.length;
+
+	var routeWaypoints = []; //an array that will contain all waypoint stops, including start and end locations.	
+
+	for(var i = 0; i < numOfWaypoints; ++i)
+	{
+		routeWaypoints.push({location: userInputAddressses[i].value, stopover: true}); //adds waypoints/orgin/destination with user input addresses to the array
+	}
+
+	//travelMode setting variable ...driving or walking option can be selected
+	var modeOfTravel = getTravelModeRadioButton(); //the result of getTravelModeRadioButton is put into travelMode (string)
+
+	//avoid toll roads setting. avoidTollRoads is boolean value; determines to skip or not skip toll roads 
+	var avoidTollRoads = document.getElementById("tollSetting").checked
 
 	//calls the google service api's direction service function, calculates the route.  (doesnt do the displaying)
 	directionsService.route({
-	  origin: "California",
-	  destination: 'Utah',
-	  waypoints: myWayPoints,
+	  origin: "California", //*********hard coded
+	  destination: 'Utah', //**********hard coded
+	  waypoints: routeWaypoints,
 	  optimizeWaypoints: true,
-	  travelMode: 'DRIVING'
+	  travelMode: modeOfTravel,
+	  avoidTolls: avoidTollRoads,
 	}, function(response, status) {
 	  if (status === 'OK') {
 		directionsDisplay.setDirections(response);
@@ -72,6 +101,7 @@ function addAddr() {
 	var cell1 = row.insertCell(1);
 	var textBox = document.createElement("INPUT");
 	textBox.setAttribute("type", "text");
+	textBox.setAttribute("name","userWaypointInputs"); //all text boxes will have their name attirbute the same ("userWaypointInputs")
 	cell1.appendChild(textBox);
 }
 
