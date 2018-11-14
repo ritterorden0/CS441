@@ -80,3 +80,12 @@ function remAddr() {
 	var lastRow = tbl.rows.length;
 	if (lastRow > 2) tbl.deleteRow(lastRow - 1);
 }
+
+/* Options menu open */
+function openOpt() {
+    document.getElementById("settings").style.display = "block";
+}
+/* options menu close */
+function closeOpt() {
+    document.getElementById("settings").style.display = "none";
+}
