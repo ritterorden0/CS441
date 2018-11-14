@@ -6,6 +6,7 @@ function initMap() {
 	directionsService = new google.maps.DirectionsService; //should this be global?
 	directionsDisplay = new google.maps.DirectionsRenderer; //should this be gloabal?
 	directionsDisplay.setMap(map); //the directions will be set to be displayed on the map variable
+	directionsDisplay.setPanel(document.getElementById('directionsPanel'));
 
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
@@ -85,6 +86,10 @@ function submitForm() {
 		window.alert('Directions request failed due to ' + status);
 	  }
 	});
+
+	document.getElementById('settings').style.visibility= "hidden";
+	document.getElementById('main').style.visibility= "hidden";
+	document.getElementById('directionsPanel').style.visibility= "visible";
 
 }
 
