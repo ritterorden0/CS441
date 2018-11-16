@@ -115,3 +115,13 @@ function remAddr() {
 	var lastRow = tbl.rows.length;
 	if (lastRow > 2) tbl.deleteRow(lastRow - 1);
 }
+
+/* code to make a settings panel open / close */
+function openSettings() {
+	var settingsVar = document.getElementById("settings");
+	if (settingsVar.style.display === "none") {
+		settingsVar.style.display = "block";
+	} else {
+		settingsVar.style.display = "none";
+	}	
+}

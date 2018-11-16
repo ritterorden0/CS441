@@ -5,7 +5,7 @@ html, body {
 	padding: 0;
   }
 
-  /* clay added 10/4 for dropdown menu */
+
 #main_nav {
 		display: none;
 		position: absolute;
@@ -39,6 +39,7 @@ html, body {
 }
 
 #settings {
+	display: none;
 	position: relative;
 	top: 200px;
 	width: 20%;
