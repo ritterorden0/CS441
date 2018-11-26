@@ -30,6 +30,12 @@ function initMap() {
 }
 
 function resetForm() {
+	var tbl = document.getElementById("addrList");
+	var last = tbl.rows.length;
+	while (last > 2) {
+		document.getElementById("addrList").deleteRow(last-1);
+		--last;
+	}
 	document.getElementById("addrList").reset();
 }
 
@@ -91,18 +97,23 @@ function submitForm() {
 function addAddr() {
 	var tbl = document.getElementById('addrList');
 	var lastRow = tbl.rows.length;
-	var iter = lastRow;
-	var row = tbl.insertRow(lastRow);
+	if (lastRow > 23) {
+		alert("You cannot add any more addresses!");
+	}
+	else {
+		var iter = lastRow;
+		var row = tbl.insertRow(lastRow);
 
-	var cell0 = row.insertCell(0);
-	var textNode0 = document.createTextNode(iter);
-	cell0.appendChild(textNode0);
+		var cell0 = row.insertCell(0);
+		var textNode0 = document.createTextNode(iter);
+		cell0.appendChild(textNode0);
 
-	var cell1 = row.insertCell(1);
-	var textBox = document.createElement("INPUT");
-	textBox.setAttribute("type", "text");
-	textBox.setAttribute("name","userWaypointInputs"); //all text boxes will have their name attirbute the same ("userWaypointInputs")
-	cell1.appendChild(textBox);
+		var cell1 = row.insertCell(1);
+		var textBox = document.createElement("INPUT");
+		textBox.setAttribute("type", "text");
+		textBox.setAttribute("name","userWaypointInputs"); //all text boxes will have their name attirbute the same ("userWaypointInputs")
+		cell1.appendChild(textBox);
+	}
 }
 
 function remAddr() {
