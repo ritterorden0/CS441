@@ -73,8 +73,11 @@ function submitForm() {
 
 	//calls the google service api's direction service function, calculates the route.  (doesnt do the displaying)
 	directionsService.route({
-	  origin: "California", //*********hard coded
-	  destination: 'Utah', //**********hard coded
+	 // origin: "California", //*********hard coded
+	 // destination: 'Utah', //**********hard coded
+	 
+	 origin: getElementById('addr1'),
+	 destination: getElementById('addrEnd'),
 	  waypoints: routeWaypoints,
 	  optimizeWaypoints: true,
 	  travelMode: modeOfTravel,
@@ -95,8 +98,8 @@ function submitForm() {
 
 function addAddr() {
 	var tbl = document.getElementById('addrList');
-	var lastRow = tbl.rows.length;
-	var iter = lastRow;
+	var lastRow = tbl.rows.length-1;
+	var iter = lastRow-1;
 	var row = tbl.insertRow(lastRow);
 
 	var cell0 = row.insertCell(0);
@@ -112,7 +115,7 @@ function addAddr() {
 
 function remAddr() {
 	var tbl = document.getElementById('addrList');
-	var lastRow = tbl.rows.length;
+	var lastRow = tbl.rows.length -1;
 	if (lastRow > 2) tbl.deleteRow(lastRow - 1);
 }
 
