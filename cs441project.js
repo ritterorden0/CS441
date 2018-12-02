@@ -71,13 +71,14 @@ function submitForm() {
 	//avoid toll roads setting. avoidTollRoads is boolean value; determines to skip or not skip toll roads 
 	var avoidTollRoads = document.getElementById("tollSetting").checked
 
+	 var ori = document.getElementById("addr1").value;
+	 var dest = document.getElementById("addrEnd").value;
 	//calls the google service api's direction service function, calculates the route.  (doesnt do the displaying)
 	directionsService.route({
 	 // origin: "California", //*********hard coded
 	 // destination: 'Utah', //**********hard coded
-	 
-	 origin: getElementById('addr1'),
-	 destination: getElementById('addrEnd'),
+	  origin: ori,
+	  destination: dest,
 	  waypoints: routeWaypoints,
 	  optimizeWaypoints: true,
 	  travelMode: modeOfTravel,
