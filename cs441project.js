@@ -71,8 +71,13 @@ function submitForm() {
 	//avoid toll roads setting. avoidTollRoads is boolean value; determines to skip or not skip toll roads 
 	var avoidTollRoads = document.getElementById("tollSetting").checked
 
+	// origin and destination based on the provided input
 	 var ori = document.getElementById("addr1").value;
 	 var dest = document.getElementById("addrEnd").value;
+	if (ori == "" || dest == "") {
+		alert("A start and end address are required");
+	}
+	else {
 	//calls the google service api's direction service function, calculates the route.  (doesnt do the displaying)
 	directionsService.route({
 	 // origin: "California", //*********hard coded
@@ -90,11 +95,11 @@ function submitForm() {
 		window.alert('Directions request failed due to ' + status);
 	  }
 	});
-
+	
 	document.getElementById('settings').style.visibility= "hidden";
 	document.getElementById('main').style.visibility= "hidden";
 	document.getElementById('directionsPanel').style.visibility= "visible";
-
+	}
 }
 
 function addAddr() {
