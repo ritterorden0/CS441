@@ -6,6 +6,13 @@
 		<meta charset="utf-8">
 	</head>
 	<body>
+		<div id="topSelection">
+			<form>
+				<input type="button" name="returnButton" value="Home" onclick="returnHomeFunction();">
+				<input type="button" name="returnButton" value="Directions" onclick="returnDirectionsFunction();">
+				<input type="button" name="options" value="Options" onclick="returnOptionsFunction();" >
+			</form>
+		</div>
 		<div id="main">
 			<table id="addrList">
 				<tr><th colspan = "2">Search for an address:</th></tr>
@@ -15,7 +22,7 @@
 				</tr>
 			</table>
 			<form action="">
-				<input type="button" onclick="resetForm()" value="Reset">
+				<!--<input type="button" onclick="resetForm()" value="Reset">-->
 				<input type="button" onclick="addAddr()" value="Add address">
 				<input type="button" onclick="remAddr()" value="Remove address">
 				<input type="button" id = "SubmitButton" onclick="submitForm()" value="Submit">
@@ -26,8 +33,9 @@
 			<input type="radio" id ="driveSetting" name="transportToggle" value="DRIVING" checked> Drive<br />
 			<input type="radio" id ="walkSetting" name="transportToggle" value="WALKING"> Walk<br />
 			<input type="checkbox" id ="tollSetting" name="tolls" value="tolls" checked> Avoid toll roads<br />
-			Number of people: <input type="text" name="splitQty" value = "3">
+			Number of people: <input type="text" name="splitQty" value = "1">
 		</div>		
 		<div id="map"></div>
+		<div id="directionsPanel"></div>
 		<script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCwSMuMe2f4oQyoBvzCgOl9iuo1LTCDz6E&callback=initMap"></script>	</body>
 </html>
