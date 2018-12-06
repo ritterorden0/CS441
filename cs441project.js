@@ -74,15 +74,14 @@ function submitForm() {
 	// origin and destination based on the provided input
 	 var ori = document.getElementById("addr1").value;
 	 var dest = document.getElementById("addrEnd").value;
+
 	 if (ori == "" || dest == "")
 	 {
-		alert("A start and end address are required");
+		alert("A start address and end address is required");
 	 }
 	 else {
 	//calls the google service api's direction service function, calculates the route.  (doesnt do the displaying)
 	directionsService.route({
-	  //origin: "California", //*********hard coded
-	  //destination: 'Utah', //**********hard coded
 	  origin: ori,
 	  destination: dest,
 	  waypoints: routeWaypoints,
