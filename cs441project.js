@@ -31,6 +31,12 @@ function initMap() {
 }
 
 function resetForm() {
+	var tbl = document.getElementById("addrList");
+	var last = tbl.rows.length;
+	while (last > 3) {
+		document.getElementById("addrList").deleteRow(last-2);
+		--last;
+	}
 	document.getElementById("addrList").reset();
 }
 
@@ -55,14 +61,16 @@ function submitForm() {
 	//myWayPoints.push({location: "San Marcos, California", stopover: true});
 
 	var userInputAddressses = []; //this is an array that will hold the textboxes (not just the values of the textboxes)
-	userInputAddressses = document.getElementsByName("userWaypointInputs"); //the array is now holding all textboxes with the attribute name "userWaypointInputs"
-	var numOfWaypoints = userInputAddressses.length;
+	userInputAddresses = document.getElementsByName("userWaypointInputs"); //the array is now holding all textboxes with the attribute name "userWaypointInputs"
+	var numOfWaypoints = userInputAddresses.length;
 
 	var routeWaypoints = []; //an array that will contain all waypoint stops, including start and end locations.	
 
 	for(var i = 0; i < numOfWaypoints; ++i)
 	{
-		routeWaypoints.push({location: userInputAddressses[i].value, stopover: true}); //adds waypoints/orgin/destination with user input addresses to the array
+		//if (userInputAddressses[i].value != "") {
+			routeWaypoints.push({location: userInputAddressses[i].value, stopover: true}); //adds waypoints/orgin/destination with user input addresses to the array
+		//}
 	}
 
 	//travelMode setting variable ...driving or walking option can be selected
