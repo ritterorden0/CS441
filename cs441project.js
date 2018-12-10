@@ -60,7 +60,7 @@ function submitForm() {
 	//myWayPoints.push({location: "San Marcos, Texas", stopover: true});
 	//myWayPoints.push({location: "San Marcos, California", stopover: true});
 
-	var userInputAddressses = []; //this is an array that will hold the textboxes (not just the values of the textboxes)
+	var userInputAddresses = []; //this is an array that will hold the textboxes (not just the values of the textboxes)
 	userInputAddresses = document.getElementsByName("userWaypointInputs"); //the array is now holding all textboxes with the attribute name "userWaypointInputs"
 	var numOfWaypoints = userInputAddresses.length;
 
@@ -68,7 +68,7 @@ function submitForm() {
 
 	for(var i = 0; i < numOfWaypoints; ++i)
 	{
-		routeWaypoints.push({location: userInputAddressses[i].value, stopover: true}); //adds waypoints/orgin/destination with user input addresses to the array
+		routeWaypoints.push({location: userInputAddresses[i].value, stopover: true}); //adds waypoints/orgin/destination with user input addresses to the array
 	}
 
 	//travelMode setting variable ...driving or walking option can be selected
