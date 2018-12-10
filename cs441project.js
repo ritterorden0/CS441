@@ -32,12 +32,16 @@ function initMap() {
 
 function resetForm() {
 	var tbl = document.getElementById("addrList");
-	var last = tbl.rows.length;
+	var last = tbl.rows.length; //gets total # of rows of the table
+	
+	//deletes all the waypoint text boxes, the only rows left are the start and end text boxes
 	while (last > 3) {
 		document.getElementById("addrList").deleteRow(last-2);
 		--last;
 	}
-	document.getElementById("addrList").reset();
+	document.getElementById("addr1").value = ""; //sets the value in this text box to nothing
+	document.getElementById("addrEnd").value = ""; //sets the value in this text box to nothing
+	//document.getElementById("addrList").reset();
 }
 
 //returns the value of the radio button if its either walk or drive,  ***note this is implemented in a not so-scalable way
@@ -60,17 +64,26 @@ function submitForm() {
 	//myWayPoints.push({location: "San Marcos, Texas", stopover: true});
 	//myWayPoints.push({location: "San Marcos, California", stopover: true});
 
+
+
+
 	var userInputAddressses = []; //this is an array that will hold the textboxes (not just the values of the textboxes)
 	userInputAddresses = document.getElementsByName("userWaypointInputs"); //the array is now holding all textboxes with the attribute name "userWaypointInputs"
 	var numOfWaypoints = userInputAddresses.length;
 
 	var routeWaypoints = []; //an array that will contain all waypoint stops, including start and end locations.	
 
+	//adds the waypoints and Start and End locations into the routeWaypoints array
 	for(var i = 0; i < numOfWaypoints; ++i)
-	{
-		routeWaypoints.push({location: userInputAddressses[i].value, stopover: true}); //adds waypoints/orgin/destination with user input addresses to the array
-	}
-
+    {
+        if (userInputAddresses[i].value != "") {
+            routeWaypoints.push({location: userInputAddresses[i].value, stopover: true}); //adds waypoints/orgin/destination with user input addresses to the array
+        }
+    }
+	//removes start and end from the routeWaypoints array (this prevents origin and destination from appearing in this waypoint array
+	routeWaypoints.shift();//shift removes the Front element of the array
+	routeWaypoints.pop();//pop removes the LAST element of the array (weird!)
+	
 	//travelMode setting variable ...driving or walking option can be selected
 	var modeOfTravel = getTravelModeRadioButton(); //the result of getTravelModeRadioButton is put into travelMode (string)
 
