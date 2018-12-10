@@ -68,9 +68,7 @@ function submitForm() {
 
 	for(var i = 0; i < numOfWaypoints; ++i)
 	{
-		//if (userInputAddressses[i].value != "") {
-			routeWaypoints.push({location: userInputAddressses[i].value, stopover: true}); //adds waypoints/orgin/destination with user input addresses to the array
-		//}
+		routeWaypoints.push({location: userInputAddressses[i].value, stopover: true}); //adds waypoints/orgin/destination with user input addresses to the array
 	}
 
 	//travelMode setting variable ...driving or walking option can be selected
