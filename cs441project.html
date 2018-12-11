@@ -37,9 +37,13 @@
 			<input type="radio" id ="driveSetting" name="transportToggle" value="DRIVING" checked> Drive<br />
 			<input type="radio" id ="walkSetting" name="transportToggle" value="WALKING"> Walk<br />
 			<input type="checkbox" id ="tollSetting" name="tolls" value="tolls" checked> Avoid toll roads<br />
-			Number of people: <input type="text" name="splitQty" value = "1">
+			Number of people (5 max): <input type="number" id="numberOfUsers" name="quantity" min="1" max="5" value="1">
 		</div>		
 		<div id="map"></div>
-		<div id="directionsPanel"></div>
+		<div id="userPanel"></div>
+		<div id="directionsPanel">
+			<select id="userSelect">
+			</select>
+		</div>
 		<script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCwSMuMe2f4oQyoBvzCgOl9iuo1LTCDz6E&callback=initMap"></script>	</body>
 </html>

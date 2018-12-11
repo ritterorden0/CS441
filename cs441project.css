@@ -55,7 +55,7 @@ html, body {
 	background-color: grey;
 }
 
-#directionsPanel {
+#directionsPanel,#userPanel {
 	top: 20px;
 	position: absolute;
 	visibility: hidden;

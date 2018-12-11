@@ -60,6 +60,8 @@ function submitForm() {
 	//myWayPoints.push({location: "San Marcos, Texas", stopover: true});
 	//myWayPoints.push({location: "San Marcos, California", stopover: true});
 
+	setUserDivs(document.getElementById("numberOfUsers").value);
+
 	var userInputAddresses = []; //this is an array that will hold the textboxes (not just the values of the textboxes)
 	userInputAddresses = document.getElementsByName("userWaypointInputs"); //the array is now holding all textboxes with the attribute name "userWaypointInputs"
 	var numOfWaypoints = userInputAddresses.length;
@@ -129,6 +131,44 @@ function remAddr() {
 	var tbl = document.getElementById('addrList');
 	var lastRow = tbl.rows.length -1;
 	if (lastRow > 2) tbl.deleteRow(lastRow - 1);
+}
+
+function setUserDivs(userCount) {
+
+	//delete old user divs
+	var myNode = document.getElementById("userPanel");
+	while (myNode.firstChild) {
+    	myNode.removeChild(myNode.firstChild);
+	}
+
+	myNode = document.getElementById("userSelect");
+	while (myNode.firstChild) {
+    	myNode.removeChild(myNode.firstChild);
+	}
+
+	var firstItem = document.createElement('option');
+	firstItem.setAttribute('value','Master');
+	firstItem.setAttribute('id','firstItem');
+	var t = document.createTextNode('Master');
+	document.getElementById('userSelect').appendChild(firstItem);
+	document.getElementById('firstItem').appendChild(t);
+
+	//beginning of for loop that generates user divs
+	for (var i = 1; i <= userCount; i++) {
+		var newDiv = document.createElement("div");
+		newDiv.setAttribute('class','userDivs');
+		var userIdString = 'user' + i;
+		var userIdSelector = 'userSelection' + i;
+		newDiv.setAttribute('id',userIdString);
+		var newSelector = document.createElement('option');
+		newSelector.setAttribute('value',userIdString);
+		newSelector.setAttribute('id',userIdSelector);
+		var t = document.createTextNode(userIdString);
+		document.getElementById('userPanel').appendChild(newDiv);
+		document.getElementById('userSelect').appendChild(newSelector);
+		document.getElementById(userIdSelector).appendChild(t);
+	}
+
 }
 
 function returnHomeFunction() {
