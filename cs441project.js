@@ -55,6 +55,24 @@ function getTravelModeRadioButton() {
 }
 
 
+/*
+this algorithm, in a greedy fashion, distributes waypoints to each traveller
+the waypoints are reordered in the waypoint_order field of the "response" (DirectionsResult object)
+a 2-d array of row length = to numTravellers.  the column is of variable length too.  the column, aside the from row index,
+is a list of waypoints that the respective traveller is to traverse (waypoints are not same as orgin and destination)
+*/
+function greedyDivide(routeResponse, numTravellers)
+{
+	//get the response's waypoint_order array
+	var optimizedWaypointOrder = routeResponse.waypoint_order; //doesn't include the destination or orgin points
+	alert(optimizedWaypointOrder[0].location);
+	
+	//create a 2d array where row is the number of travellers and columns, aside from the traveller index, is their divy-ed out waypoints
+	//var travellersWaypoints[numTravellers][];
+	//divy out the waypoints in optimizedWaypointOrder array to each traveller
+	
+	
+}	
 
 function submitForm() {
 	//document.getElementById("addrList").reset(); // why reset() ...placeholder??
@@ -70,7 +88,7 @@ function submitForm() {
 	var userInputAddressses = []; //this is an array that will hold the textboxes (not just the values of the textboxes)
 	userInputAddresses = document.getElementsByName("userWaypointInputs"); //the array is now holding all textboxes with the attribute name "userWaypointInputs"
 	var numOfWaypoints = userInputAddresses.length;
-
+	var numTravellers = document.getElementById("numTravellers").value;
 	var routeWaypoints = []; //an array that will contain all waypoint stops, including start and end locations.	
 
 	//adds the waypoints and Start and End locations into the routeWaypoints array
@@ -109,6 +127,7 @@ function submitForm() {
 	  avoidTolls: avoidTollRoads,
 	}, function(response, status) {
 	  if (status === 'OK') {
+		greedyDivide(response.routes[0], numTravellers);//call the greedy algorithm here using the response.routes[0], which contains the waypoint_order field within the DirectionsResponse object (response?)
 		directionsDisplay.setDirections(response);
 	  } else {
 		window.alert('Directions request failed due to ' + status);
