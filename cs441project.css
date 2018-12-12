@@ -1,76 +1,140 @@
-/*html and body tags are set 100% to allow div tags (or whatever) to have height set to a %, not just px value */
-html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-  }
-
-  /* clay added 10/4 for dropdown menu */
-#main_nav {
-		display: none;
-		position: absolute;
-		top: 0;
-		left: 0;
-		background: #fff;
-		width: 100%;
-		
-		border-radius: 0 0 5px 5px;
-		box-shadow: 0 0 8px 2px #000;
-		}
-
-#main_nav:target {
-		display: block;
-		}
-
-#access_nav {
-		background-image: -webkit-repeating-linear-gradient(#ccc, #ccc 2px, #fff 2px, #fff 4px);
-		background-image: repeating-linear-gradient(#ccc, #ccc 2px, #fff 2px, #fff 4px);
-	}
-
-#access_top {
-		background-image: linear-gradient(45deg, transparent 13px, #ccc 13px, #ccc 15px, transparent 0), linear-gradient(-45deg, white 13px, #ccc 13px, #ccc 15px, white 0);
-	}
-
-#main {
-	position: relative;
-	top: 150px;
-	left: 0;
-	width: 20%;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-#settings {
-	position: relative;
-	top: 200px;
-	width: 20%;
-	visibility: hidden;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* The grid container */
+.grid-container {
+  display: grid;
+   width: 100vw;
+  height: 100vh;
+  grid-template-columns: 20% auto;
+  grid-template-rows: 10% 90%;
+  grid-template-areas: 
+    'header header' 
+    'left right';
+  overflow: scroll;
+}
+
+/* Style the header */
+.header {
+  grid-area: header;
+  background-color: #f1f1f1;
+  padding: 30px;
+  text-align: right;
+  font-size: 35px;
+  font-style: italic; 
+} 
+
+/* Style the left column */
+.left {
+  grid-area: left;
+  overflow: scroll;
+}
+
+/* Style the right column */
+.right {
+  grid-area: right;
+
+
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+  .grid-container  {
+    grid-template-areas: 
+      'header header header header header header' 
+      'left left left left left left' 
+      'middle middle middle middle middle middle' 
+      'right right right right right right' 
+      'footer footer footer footer footer footer';
+  }
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+/* The sidepanel menu */
+.sidepanel {
+  height: 100%; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: #f1f1f1;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+}
+
+/* The sidepanel links */
+.sidepanel a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  display: block;
+  transition: 0.3s;
+}
+
+/* Position and style the close button (top right corner) */
+.sidepanel .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  margin-left: 50px;
+}
+
+/* Style the button that is used to open the sidepanel */
+.openbtn {
+  cursor: pointer;
+  float: right;
+  top:0px;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
 }
 
 #map {
-	position: absolute;
 	height: 100%;
-	width: 80%;
-	top: 0px;
-	margin-left: 20%;
-	margin-right: 0;
 	background-color: grey;
 }
 
-#directionsPanel,#userPanel {
-	top: 20px;
-	position: absolute;
-	visibility: hidden;
-	width: 20%;
-	height: 100%;
-	overflow: scroll;
-}
-
-
-
-.container {
-    display: inline-block;
-    cursor: pointer;
-}
-
-#topSelection {
-	width: 20%;
+#directionsPanel {
+	height: inherit;
+  	overflow: scroll;
 }

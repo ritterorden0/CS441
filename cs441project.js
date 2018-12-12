@@ -1,4 +1,22 @@
-var map, infoWindow;
+
+if(document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', afterLoaded);
+} else {
+    //The DOMContentLoaded event has already fired. Just run the code.
+    afterLoaded();
+}
+
+function afterLoaded() {
+    //Your initialization code goes here. This is from where your code should start
+    //  running if it wants to access elements placed in the DOM by your HTML files.
+    //  If you are wanting to access DOM elements inserted by JavaScript, you may need
+    //  to delay more, or use a MutationObserver to see when they are inserted.
+    // Get the element with id="defaultOpen" and click on it
+	document.getElementById("defaultOpen").click();
+	var map, infoWindow;
+
+};
+
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {center: {lat: 56.1304, lng: -106.3468}, zoom: 6});
 	
@@ -104,9 +122,7 @@ function submitForm() {
 	  }
 	});
 
-	document.getElementById('settings').style.visibility= "hidden";
-	document.getElementById('main').style.visibility= "hidden";
-	document.getElementById('directionsPanel').style.visibility= "visible";
+	document.getElementById("submitPressed").click();
 	 }
 }
 
@@ -171,20 +187,34 @@ function setUserDivs(userCount) {
 
 }
 
-function returnHomeFunction() {
-	document.getElementById("main").style.visibility = "visible";
-	document.getElementById("settings").style.visibility = "hidden";
-	document.getElementById("directionsPanel").style.visibility = "hidden";
+function openTab(evt, tabName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+	}
+
+/* Set the width of the sidebar to 20% (show it) */
+function openNav() {
+  document.getElementById("settings").style.width = "20%";
 }
 
-function returnOptionsFunction() {
-	document.getElementById("main").style.visibility = "hidden";
-	document.getElementById("settings").style.visibility = "visible";
-	document.getElementById("directionsPanel").style.visibility = "hidden";
-}
+/* Set the width of the sidebar to 0 (hide it) */
+function closeNav() {
+  document.getElementById("settings").style.width = "0";
+} 
 
-function returnDirectionsFunction() {
-	document.getElementById("main").style.visibility = "hidden";
-	document.getElementById("settings").style.visibility = "hidden";
-	document.getElementById("directionsPanel").style.visibility = "visible";
-}

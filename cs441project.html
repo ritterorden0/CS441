@@ -3,47 +3,56 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="cs441project.css">
 		<script src="cs441project.js"></script>
+		<script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCwSMuMe2f4oQyoBvzCgOl9iuo1LTCDz6E&callback=initMap"></script>
 		<meta charset="utf-8">
 	</head>
 	<body>
-		<div id="topSelection">
-			<form>
-				<input type="button" name="returnButton" value="Home" onclick="returnHomeFunction();">
-				<input type="button" name="returnButton" value="Directions" onclick="returnDirectionsFunction();">
-				<input type="button" name="options" value="Options" onclick="returnOptionsFunction();" >
-			</form>
+		<div class="grid-container">
+			<div class="header">
+				<h2>RouteTracker</h2>
+			</div>
+			<div class="left">
+				<div id="topSelection">
+					<div class="tab">
+						<button class="tablinks" onclick="openTab(event, 'main')" id="defaultOpen">Home</button>
+						<button class="tablinks" onclick="openTab(event, 'directionsPanel')" id="submitPressed">Directions</button>
+						<button class="openbtn" onclick="openNav()">&#9776; Settings</button>
+					</div>
+				</div>
+				<div id="main" class="tabcontent">
+					<table id="addrList">
+						<tr><th colspan = "2">Search for an address:</th></tr>
+						<tr>
+							<td>Start</td>
+							<td><input type="text" name="userWaypointInputs" id="addr1" onkeypress="func(event, this);" /></td>
+							</tr>
+							<tr>
+							<td>End</td>
+							<td><input type="text" name="userWaypointInputs" id="addrEnd" onkeypress="func(event, this);" /></td>
+						</tr>
+					</table>
+					<form action="">
+						<input type="button" onclick="resetForm()" value="Reset">
+						<input type="button" onclick="addAddr()" value="Add address">
+						<input type="button" onclick="remAddr()" value="Remove address">
+						<input type="button" id = "SubmitButton" onclick="submitForm()" value="Submit">
+					</form>
+				</div>
+				<div id="settings" class="sidepanel">
+					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+					<input type="radio" id ="driveSetting" name="transportToggle" value="DRIVING" checked> Drive<br />
+					<input type="radio" id ="walkSetting" name="transportToggle" value="WALKING"> Walk<br />
+					<input type="checkbox" id ="tollSetting" name="tolls" value="tolls" checked> Avoid toll roads<br />
+					Number of people (5 max): <input type="number" id="numberOfUsers" name="quantity" min="1" max="5" value="1">
+				</div>
+				<div id="userPanel" class="tab"></div>
+				<div id="directionsPanel" class="tabcontent">
+					<select id="userSelect"></select>
+				</div>
+			</div>
+			<div class="right">
+				<div id="map"></div>
+			</div>
 		</div>
-		<div id="main">
-			<table id="addrList">
-				<tr><th colspan = "2">Search for an address:</th></tr>
-				<tr>
-					<td>start</td>
-					<td><input type="text" name="userWaypointInputs" id="addr1" onkeypress="func(event, this);" /></td>
-					</tr>
-					<tr>
-					<td>end</td>
-					<td><input type="text" name="userWaypointInputs" id="addrEnd" onkeypress="func(event, this);" /></td>
-				</tr>
-			</table>
-			<form action="">
-				<!--<input type="button" onclick="resetForm()" value="Reset">-->
-				<input type="button" onclick="addAddr()" value="Add address">
-				<input type="button" onclick="remAddr()" value="Remove address">
-				<input type="button" id = "SubmitButton" onclick="submitForm()" value="Submit">
-			</form>
-		</div>
-
-		<div id="settings">
-			<input type="radio" id ="driveSetting" name="transportToggle" value="DRIVING" checked> Drive<br />
-			<input type="radio" id ="walkSetting" name="transportToggle" value="WALKING"> Walk<br />
-			<input type="checkbox" id ="tollSetting" name="tolls" value="tolls" checked> Avoid toll roads<br />
-			Number of people (5 max): <input type="number" id="numberOfUsers" name="quantity" min="1" max="5" value="1">
-		</div>		
-		<div id="map"></div>
-		<div id="userPanel"></div>
-		<div id="directionsPanel">
-			<select id="userSelect">
-			</select>
-		</div>
-		<script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCwSMuMe2f4oQyoBvzCgOl9iuo1LTCDz6E&callback=initMap"></script>	</body>
+	</body>
 </html>
